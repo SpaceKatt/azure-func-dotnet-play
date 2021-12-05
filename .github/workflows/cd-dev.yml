@@ -26,7 +26,6 @@ jobs:
           dotnet_version: ${{ env.DOTENET_VERSION }}
           output_directory: ${{ env.OUTPUT_DIRECTORY }}
           project_file: ${{ env.PROJECT_FILE }}
-        secrets:
           azure_credentials: ${{ secrets.AZURE_CREDENTIALS }}
           azure_function_pub_prof: ${{ secrets.AZURE_FUNCTION_PUB_PROF }}
           azure_functionapp_name: fun-spacekattdev
