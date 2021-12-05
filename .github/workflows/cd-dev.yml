@@ -13,12 +13,13 @@ env:
 
 jobs:
   reusable_workflow_job:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v2
-      - name: 'Dev Deploy'
-        id: dev-cd
-        uses: ./.github/workflows/cd-template
+    # runs-on: ubuntu-latest
+    # steps:
+    #   - uses: actions/checkout@v2
+      # - name: 'Dev Deploy'
+      #   id: dev-cd
+        # uses: ./.github/workflows/cd-template
+        uses: spacekatt/azure-func-dotnet-play/.github/workflows/cd-template
         with:
           azure_functionapp_package_path: ${{ env.AZURE_FUNCTIONAPP_PACKAGE_PATH }}
           bicep_manifest_file: ./deploy/resources/dev.bicep
@@ -26,6 +27,7 @@ jobs:
           dotnet_version: ${{ env.DOTENET_VERSION }}
           output_directory: ${{ env.OUTPUT_DIRECTORY }}
           project_file: ${{ env.PROJECT_FILE }}
+        secrets:
           azure_credentials: ${{ secrets.AZURE_CREDENTIALS }}
           azure_function_pub_prof: ${{ secrets.AZURE_FUNCTION_PUB_PROF }}
           azure_functionapp_name: fun-spacekattdev
