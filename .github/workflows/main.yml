@@ -4,13 +4,13 @@ env:
   AZURE_FUNCTIONAPP_NAME: fun-spacekattfunc
   AZURE_FUNCTIONAPP_PACKAGE_PATH: '.'
   DOTNET_VERSION: '5.0.x'
+  PROJECT_FILE: azure-func-dotnet-play.csproj
 
 name: Azure Bicep Deploy and Publish
 jobs:
   deploy-infrastructure:
     runs-on: ubuntu-latest
     steps:
-
       # Checkout code
     - uses: actions/checkout@main
 
@@ -31,6 +31,9 @@ jobs:
   build-publish:
     runs-on: ubuntu-latest
     steps:
+      # Checkout code
+    - uses: actions/checkout@main
+
     - name: 'Setup DotNet ${{ env.DOTNET_VERSION }} Env'
       uses: actions/setup-dotnet@v1.7.2
       with:
@@ -38,11 +41,11 @@ jobs:
 
     - name: Install dependencies
       shell: bash
-      run: dotnet restore
+      run: 'dotnet restore ${{ env.PROJECT_FILE }}'
 
     - name: Build project
       shell: bash
-      run: dotnet build --configuration Release --no-restore
+      run: 'dotnet build ${{ env.PROJECT_FILE }} --configuration Release --no-restore'
 
     - name: 'Publish Azure Function'
       uses: Azure/functions-action@v1
