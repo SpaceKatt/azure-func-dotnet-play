@@ -1,5 +1,10 @@
 on: [push]
 
+env:
+  AZURE_FUNCTIONAPP_NAME: fun-spacekattfunc
+  AZURE_FUNCTIONAPP_PACKAGE_PATH: '.'
+  DOTNET_VERSION: '5.0'
+
 name: Azure Bicep Deploy and Publish
 jobs:
   build-and-deploy:
@@ -22,3 +27,23 @@ jobs:
         resourceGroupName: ${{ secrets.AZURE_RG }}
         template: ./deploy/resources/main.bicep
         failOnStdErr: false
+
+    - name: Setup DotNet ${{ env.DOTNET_VERSION }} Env
+      uses: actions/setup-dotnet@1
+      with:
+        dotnet-version: ${{ env.DOTNET_VERSION }}
+
+    - name: 'Build project'
+      shell: bash
+      run: |
+        pushd '${{ env.AZURE_FUNCTIONAPP_PACKAGE_PATH }}'
+        dotnet build --configuration Release
+        popd
+
+    - name: 'Publish Azure Function'
+      uses: Azure/functions-actions@v1
+      id: fa
+      with:
+        app-name: ${{ env.AZURE_FUNCTION_APP_NAME }}
+        package: '$${{ env.AZURE_FUNCTIONAPP_PACKAGE_PATH }}'
+        publish-profile: $${{ env.AZURE_FUNCTION_PUB_PROF }}

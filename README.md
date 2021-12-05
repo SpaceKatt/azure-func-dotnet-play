@@ -39,5 +39,5 @@ func azure functionapp publish fun-spacekattfunc
 See tutorial for [Deploying Bicep with GitHub Actions](https://docs.microsoft.com/en-us/azure/azure-resource-manager/bicep/deploy-github-actions?tabs=CLI).
 
 ```bash
- az ad sp create-for-rbac --name myApp --role contributor --scopes /subscriptions/${AZURE_SUB_ID}/resourceGroups/spacekatt-func-play --sdk-auth
+ az ad sp create-for-rbac --name ${AZURE_SP_NAME} --role contributor --scopes /subscriptions/${AZURE_SUB_ID}/resourceGroups/spacekatt-func-play --sdk-auth
  ```
