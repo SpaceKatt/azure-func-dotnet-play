@@ -51,7 +51,7 @@ jobs:
       with:
         subscriptionId: ${{ secrets.azure_subscription }}
         resourceGroupName: ${{ secrets.azure_resource_group }}
-        template: ${{ inputs.bicep_manifest_path }}
+        template: ${{ inputs.bicep_manifest_file }}
         failOnStdErr: false
 
   build-publish:
