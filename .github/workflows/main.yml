@@ -29,7 +29,7 @@ jobs:
         failOnStdErr: false
 
     - name: Setup DotNet ${{ env.DOTNET_VERSION }} Env
-      uses: actions/setup-dotnet@1
+      uses: actions/setup-dotnet@v1
       with:
         dotnet-version: ${{ env.DOTNET_VERSION }}
 
@@ -41,7 +41,7 @@ jobs:
         popd
 
     - name: 'Publish Azure Function'
-      uses: Azure/functions-actions@v1
+      uses: Azure/functions-action@v1
       id: fa
       with:
         app-name: ${{ env.AZURE_FUNCTION_APP_NAME }}
