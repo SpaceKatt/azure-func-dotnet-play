@@ -1,3 +1,5 @@
+name: Azure Infrastructure Deploy and Publish
+
 on:
   workflow_call:
     inputs:
@@ -36,7 +38,6 @@ on:
         required: true
         type: string
 
-name: Azure Bicep Deploy and Publish
 jobs:
   deploy-infrastructure:
     runs-on: ubuntu-latest
