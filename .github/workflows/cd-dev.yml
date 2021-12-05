@@ -9,9 +9,13 @@ env:
 
 jobs:
   reusable_workflow_job:
-    uses: spacekatt/azure-func-dotnet-play/.github/workflows/cd-template.yml@main
-    with:
-      bicep_manifest_file: ./deploy/resources/dev.bicep
-      azure_functionapp_name: fun-spacekattdev
-      azure_subscription: ${{ env.AZURE_SUBSCRIPTION }}
-      azure_resource_group: ${{ env.AZURE_RG }}
+    steps:
+      - uses: actions/checkout@v2
+      - name: 'Dev Deploy'
+        id: dev-cd
+        uses: ./.github/workflows/cd-template.yml
+        with:
+          bicep_manifest_file: ./deploy/resources/dev.bicep
+          azure_functionapp_name: fun-spacekattdev
+          azure_subscription: ${{ env.AZURE_SUBSCRIPTION }}
+          azure_resource_group: ${{ env.AZURE_RG }}
