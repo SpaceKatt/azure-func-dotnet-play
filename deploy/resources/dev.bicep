@@ -7,3 +7,4 @@ module devModule './modules/functions.bicep' ={
   }
 }
 
+output functionAppName string = devModule.outputs.functionAppName

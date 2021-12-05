@@ -24,8 +24,8 @@ on:
     secrets:
       azure_credentials:
         required: true
-      azure_functionapp_name:
-        required: true
+      # azure_functionapp_name:
+      #   required: true
       azure_resource_group:
         required: true
       azure_subscription:
@@ -48,6 +48,7 @@ jobs:
       # Deploy Bicep file
     - name: deploy bicep template file
       uses: azure/arm-deploy@v1
+      id: deploy
       with:
         subscriptionId: ${{ secrets.azure_subscription }}
         resourceGroupName: ${{ secrets.azure_resource_group }}
@@ -88,6 +89,6 @@ jobs:
       uses: Azure/functions-action@v1
       id: fa
       with:
-        app-name: '${{ secrets.azure_functionapp_name }}'
+        app-name: '${{ steps.deploy.outputs.functionAppName }}'
         package: '${{ inputs.azure_functionapp_package_path }}/${{ inputs.output_directory }}'
         publish-profile: ${{ secrets.azure_function_pub_prof }}

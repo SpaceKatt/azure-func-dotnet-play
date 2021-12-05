@@ -152,3 +152,4 @@ resource keyVaultSecret 'Microsoft.KeyVault/vaults/secrets@2018-02-14' = {
 
 output functionAppHostName string = functionApp.properties.defaultHostName
 output functionName string = functionNameComputed
+output functionAppName string = functionAppName

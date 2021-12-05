@@ -18,6 +18,6 @@ jobs:
     secrets:
       azure_credentials: ${{ secrets.AZURE_CREDENTIALS }}
       azure_function_pub_prof: ${{ secrets.AZURE_FUNCTION_PUB_PROF }}
-      azure_functionapp_name: fun-spacekattdev
+      # azure_functionapp_name: fun-spacekattdev
       azure_resource_group: ${{ secrets.AZURE_RG }}
       azure_subscription: ${{ secrets.AZURE_SUBSCRIPTION }}
