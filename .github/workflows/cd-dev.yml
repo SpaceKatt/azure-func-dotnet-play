@@ -21,12 +21,12 @@ jobs:
         # uses: ./.github/workflows/cd-template
         uses: spacekatt/azure-func-dotnet-play/.github/workflows/cd-template.yml@main
         with:
-          azure_functionapp_package_path: ${{ env.AZURE_FUNCTIONAPP_PACKAGE_PATH }}
+          azure_functionapp_package_path: '.'
           bicep_manifest_file: ./deploy/resources/dev.bicep
-          dotnet_build_dependency_version: ${{ env.DOTNET_BUILD_DEPENDENCY_VERSION }}
-          dotnet_version: ${{ env.DOTENET_VERSION }}
-          output_directory: ${{ env.OUTPUT_DIRECTORY }}
-          project_file: ${{ env.PROJECT_FILE }}
+          dotnet_build_dependency_version: '3.1.x'
+          dotnet_version: '5.0.x'
+          output_directory: output
+          project_file: azure-func-dotnet-play.csproj
         secrets:
           azure_credentials: ${{ secrets.AZURE_CREDENTIALS }}
           azure_function_pub_prof: ${{ secrets.AZURE_FUNCTION_PUB_PROF }}
