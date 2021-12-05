@@ -3,11 +3,15 @@ on:
     branches:
       - main
 
+env:
+  AZURE_SUBSCRIPTION: ${{ secrets.AZURE_SUBSCRIPTION }}
+  AZURE_RG: ${{ secrets.AZURE_RG }}
+
 jobs:
   call-workflow-passing-data:
     uses: spacekatt/azure-func-dotnet-play/.github/workflows/cd-template.yml@main
     with:
       bicep_manifest_file: ./deploy/resources/dev.bicep
       azure_functionapp_name: fun-spacekattdev
-      azure_subscription: '${{ secrets.AZURE_SUBSCRIPTION }}'
-      azure_resource_group: '${{ secrets.AZURE_RG }}'
+      azure_subscription: '${{ env.AZURE_SUBSCRIPTION }}'
+      azure_resource_group: '${{ env.AZURE_RG }}'
