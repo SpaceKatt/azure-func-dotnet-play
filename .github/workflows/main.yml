@@ -3,7 +3,7 @@ on: [push]
 env:
   AZURE_FUNCTIONAPP_NAME: fun-spacekattfunc
   AZURE_FUNCTIONAPP_PACKAGE_PATH: '.'
-  DOTNET_VERSION: '5.0'
+  DOTNET_VERSION: '5.0.403'
 
 name: Azure Bicep Deploy and Publish
 jobs:
@@ -20,7 +20,7 @@ jobs:
         creds: ${{ secrets.AZURE_CREDENTIALS }}
 
       # Deploy Bicep file
-    - name: deploy
+    - name: deploy bicep template file
       uses: azure/arm-deploy@v1
       with:
         subscriptionId: ${{ secrets.AZURE_SUBSCRIPTION }}
@@ -28,7 +28,7 @@ jobs:
         template: ./deploy/resources/main.bicep
         failOnStdErr: false
 
-    - name: Setup DotNet ${{ env.DOTNET_VERSION }} Env
+    - name: 'Setup DotNet ${{ env.DOTNET_VERSION }} Env'
       uses: actions/setup-dotnet@v1
       with:
         dotnet-version: ${{ env.DOTNET_VERSION }}
