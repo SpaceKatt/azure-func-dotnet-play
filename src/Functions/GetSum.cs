@@ -41,9 +41,7 @@ namespace AzureFuncDotnetPlay
                 }
 
                 var response = request.CreateResponse(System.Net.HttpStatusCode.OK);
-
                 var responseData = JsonConvert.SerializeObject(new SumResponse(sum));
-
                 await response.WriteStringAsync(responseData).ConfigureAwait(false);
 
                 return response;
