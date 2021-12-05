@@ -13,7 +13,6 @@ name: CI Workflow
 jobs:
   build-test:
     runs-on: ubuntu-latest
-    needs: deploy-infrastructure
     steps:
       # Checkout code
     - uses: actions/checkout@main
