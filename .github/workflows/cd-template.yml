@@ -24,19 +24,14 @@ on:
     secrets:
       azure_credentials:
         required: true
-        type: string
       azure_functionapp_name:
         required: true
-        type: string
       azure_resource_group:
         required: true
-        type: string
       azure_subscription:
         required: true
-        type: string
       azure_function_pub_prof:
         required: true
-        type: string
 
 jobs:
   deploy-infrastructure:
