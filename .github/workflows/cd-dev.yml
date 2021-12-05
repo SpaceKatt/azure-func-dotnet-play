@@ -11,6 +11,7 @@ jobs:
   reusable_workflow_job:
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/checkout@main
       - uses: ./.github/workflows/cd-template.yml@main
         with:
           bicep_manifest_file: ./deploy/resources/dev.bicep
