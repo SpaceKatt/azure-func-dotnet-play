@@ -3,11 +3,11 @@ on: [push]
 env:
   AZURE_FUNCTIONAPP_NAME: fun-spacekattfunc
   AZURE_FUNCTIONAPP_PACKAGE_PATH: '.'
-  DOTNET_VERSION: '5.0.403'
+  DOTNET_VERSION: '5.0.x'
 
 name: Azure Bicep Deploy and Publish
 jobs:
-  build-and-deploy:
+  deploy-infrastructure:
     runs-on: ubuntu-latest
     steps:
 
@@ -28,17 +28,21 @@ jobs:
         template: ./deploy/resources/main.bicep
         failOnStdErr: false
 
+  build-publish:
+    runs-on: ubuntu-latest
+    steps:
     - name: 'Setup DotNet ${{ env.DOTNET_VERSION }} Env'
-      uses: actions/setup-dotnet@v1
+      uses: actions/setup-dotnet@v1.7.2
       with:
         dotnet-version: ${{ env.DOTNET_VERSION }}
 
-    - name: 'Build project'
+    - name: Install dependencies
       shell: bash
-      run: |
-        pushd '${{ env.AZURE_FUNCTIONAPP_PACKAGE_PATH }}'
-        dotnet build --configuration Release
-        popd
+      run: dotnet restore
+
+    - name: Build project
+      shell: bash
+      run: dotnet build --configuration Release --no-restore
 
     - name: 'Publish Azure Function'
       uses: Azure/functions-action@v1
