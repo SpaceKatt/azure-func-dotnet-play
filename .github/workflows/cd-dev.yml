@@ -5,7 +5,7 @@ on:
 
 jobs:
   call-workflow-passing-data:
-    uses: spacekatt/azure-func-dotnet-play/.github/workflows/cd-template.yml
+    uses: spacekatt/azure-func-dotnet-play/.github/workflows/cd-template.yml@main
     with:
       bicep_manifest_file: ./deploy/resources/dev.bicep
       azure_functionapp_name: fun-spacekattdev
