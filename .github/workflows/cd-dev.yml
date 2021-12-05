@@ -12,24 +12,18 @@ env:
   OUTPUT_DIRECTORY: output
 
 jobs:
-  reusable_workflow_job:
-    # runs-on: ubuntu-latest
-    # steps:
-    #   - uses: actions/checkout@v2
-      # - name: 'Dev Deploy'
-      #   id: dev-cd
-        # uses: ./.github/workflows/cd-template
-        uses: spacekatt/azure-func-dotnet-play/.github/workflows/cd-template.yml@main
-        with:
-          azure_functionapp_package_path: '.'
-          bicep_manifest_file: ./deploy/resources/dev.bicep
-          dotnet_build_dependency_version: '3.1.x'
-          dotnet_version: '5.0.x'
-          output_directory: output
-          project_file: azure-func-dotnet-play.csproj
-        secrets:
-          azure_credentials: ${{ secrets.AZURE_CREDENTIALS }}
-          azure_function_pub_prof: ${{ secrets.AZURE_FUNCTION_PUB_PROF }}
-          azure_functionapp_name: fun-spacekattdev
-          azure_resource_group: ${{ secrets.AZURE_RG }}
-          azure_subscription: ${{ secrets.AZURE_SUBSCRIPTION }}
+  dev_cd_job:
+    uses: spacekatt/azure-func-dotnet-play/.github/workflows/cd-template.yml@main
+    with:
+      azure_functionapp_package_path: '.'
+      bicep_manifest_file: ./deploy/resources/dev.bicep
+      dotnet_build_dependency_version: '3.1.x'
+      dotnet_version: '5.0.x'
+      output_directory: output
+      project_file: azure-func-dotnet-play.csproj
+    secrets:
+      azure_credentials: ${{ secrets.AZURE_CREDENTIALS }}
+      azure_function_pub_prof: ${{ secrets.AZURE_FUNCTION_PUB_PROF }}
+      azure_functionapp_name: fun-spacekattdev
+      azure_resource_group: ${{ secrets.AZURE_RG }}
+      azure_subscription: ${{ secrets.AZURE_SUBSCRIPTION }}
