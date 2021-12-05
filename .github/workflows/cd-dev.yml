@@ -10,6 +10,7 @@ jobs:
     uses: spacekatt/azure-func-dotnet-play/.github/workflows/cd-template.yml@main
     with:
       azure_functionapp_package_path: '.'
+      azure_functionapp_name: fun-spacekattdev
       bicep_manifest_file: ./deploy/resources/dev.bicep
       dotnet_build_dependency_version: '3.1.x'
       dotnet_version: '5.0.x'
@@ -18,6 +19,5 @@ jobs:
     secrets:
       azure_credentials: ${{ secrets.AZURE_CREDENTIALS }}
       azure_function_pub_prof: ${{ secrets.AZURE_FUNCTION_PUB_PROF }}
-      azure_functionapp_name: fun-spacekattdev
-      azure_resource_group: ${{ secrets.AZURE_RG }}
+      azure_resource_group: ${{ secrets.AZURE_RG_DEV }}
       azure_subscription: ${{ secrets.AZURE_SUBSCRIPTION }}

@@ -3,10 +3,13 @@ name: Azure Infrastructure Deploy and Publish
 on:
   workflow_call:
     inputs:
-      bicep_manifest_file:
+      azure_functionapp_package_path:
         required: true
         type: string
-      azure_functionapp_package_path:
+      azure_functionapp_name:
+        required: true
+        type: string
+      bicep_manifest_file:
         required: true
         type: string
       dotnet_build_dependency_version:
@@ -23,8 +26,6 @@ on:
         type: string
     secrets:
       azure_credentials:
-        required: true
-      azure_functionapp_name:
         required: true
       azure_resource_group:
         required: true
