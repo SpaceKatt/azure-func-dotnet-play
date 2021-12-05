@@ -9,7 +9,6 @@ env:
 
 jobs:
   reusable_workflow_job:
-    runs-on: ubuntu-latest
     uses: spacekatt/azure-func-dotnet-play/.github/workflows/cd-template.yml@main
     with:
       bicep_manifest_file: ./deploy/resources/dev.bicep
