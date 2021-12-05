@@ -13,5 +13,5 @@ jobs:
     with:
       bicep_manifest_file: ./deploy/resources/dev.bicep
       azure_functionapp_name: fun-spacekattdev
-      azure_subscription: '${{ env.AZURE_SUBSCRIPTION }}'
-      azure_resource_group: '${{ env.AZURE_RG }}'
+      azure_subscription: ${{ env.AZURE_SUBSCRIPTION }}
+      azure_resource_group: ${{ env.AZURE_RG }}
