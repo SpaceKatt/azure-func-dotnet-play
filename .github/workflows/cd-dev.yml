@@ -1,3 +1,5 @@
+name: CD Dev on Main
+
 on:
   push:
     branches:
