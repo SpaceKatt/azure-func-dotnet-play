@@ -32,6 +32,9 @@ on:
       azure_subscription:
         required: true
         type: string
+      azure_function_pub_prof:
+        required: true
+        type: string
 
 name: Azure Bicep Deploy and Publish
 jobs:
@@ -91,4 +94,4 @@ jobs:
       with:
         app-name: '${{ secrets.azure_functionapp_name }}'
         package: '${{ inputs.azure_functionapp_package_path }}/${{ inputs.output_directory }}'
-        publish-profile: ${{ inputs.azure_function_pub_prof }}
+        publish-profile: ${{ secrets.azure_function_pub_prof }}
