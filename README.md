@@ -2,6 +2,12 @@
 
 Testing ground for C# (Dotnet) Azure Functions
 
+- [Azure Func Dotnet Playgound](#azure-func-dotnet-playgound)
+  - [Prerequisites](#prerequisites)
+  - [Run Functions Locally](#run-functions-locally)
+  - [Setup Deployment](#setup-deployment)
+  - [Setting Up CI/CD](#setting-up-cicd)
+
 ## Prerequisites
 
 - Install Dotnet 5
@@ -41,3 +47,10 @@ See tutorial for [Deploying Bicep with GitHub Actions](https://docs.microsoft.co
 ```bash
  az ad sp create-for-rbac --name ${AZURE_SP_NAME} --role contributor --scopes /subscriptions/${AZURE_SUB_ID}/resourceGroups/spacekatt-func-play --sdk-auth
  ```
+
+| GitHub Repo Secrets Name | Description |
+| :----------------------  | :- |
+| `AZURE_CREDENTIALS` | Output of `az ad sp create-for-rbac` command; service principal credentials. |
+| `AZURE_FUNCTION_PUB_PROF` | Azure Functions publish profile (XML), downloaded from Azure. |
+| `AZURE_RG` | Azure resource group which we created for the project. |
+| `AZURE_SUBSCRIPTION` | Azure subscription Id. |
