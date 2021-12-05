@@ -3,7 +3,7 @@ on: [push]
 env:
   AZURE_FUNCTIONAPP_NAME: fun-spacekattfunc
   AZURE_FUNCTIONAPP_PACKAGE_PATH: '.'
-  DOTNET_BUILD_DEPENDENCY_VERSION: '3.x'
+  DOTNET_BUILD_DEPENDENCY_VERSION: '3.1.x'
   DOTNET_VERSION: '5.0.x'
   PROJECT_FILE: azure-func-dotnet-play.csproj
 
@@ -31,6 +31,7 @@ jobs:
 
   build-publish:
     runs-on: ubuntu-latest
+    # needs: deploy-infrastructure
     steps:
       # Checkout code
     - uses: actions/checkout@main
