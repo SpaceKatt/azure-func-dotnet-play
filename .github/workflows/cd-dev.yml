@@ -5,7 +5,11 @@ on:
 
 env:
   AZURE_SUBSCRIPTION: ${{ secrets.AZURE_SUBSCRIPTION }}
-  AZURE_RG: ${{ secrets.AZURE_RG }}
+  AZURE_FUNCTIONAPP_PACKAGE_PATH: '.'
+  DOTNET_BUILD_DEPENDENCY_VERSION: '3.1.x'
+  DOTNET_VERSION: '5.0.x'
+  PROJECT_FILE: azure-func-dotnet-play.csproj
+  OUTPUT_DIRECTORY: output
 
 jobs:
   reusable_workflow_job:
@@ -17,6 +21,13 @@ jobs:
         uses: ./.github/workflows/cd-template
         with:
           bicep_manifest_file: ./deploy/resources/dev.bicep
+          azure_functionapp_package_path: ${{ env.AZURE_FUNCTIONAPP_PACKAGE_PATH }}
+          dotnet_build_dependency_version: ${{ env.DOTNET_BUILD_DEPENDENCY_VERSION }}
+          dotnet_version: ${{ env.DOTENET_VERSION }}
+          project_file: ${{ env.PROJECT_FILE }}
+          output_directory: ${{ env.OUTPUT_DIRECTORY }}
+        secrets:
+          azure_credentials: ${{ secrets.AZURE_CREDENTIALS }}
           azure_functionapp_name: fun-spacekattdev
-          azure_subscription: ${{ env.AZURE_SUBSCRIPTION }}
-          azure_resource_group: ${{ env.AZURE_RG }}
+          azure_subscription: ${{ secrets.AZURE_SUBSCRIPTION }}
+          azure_resource_group: ${{ secrets.AZURE_RG }}
