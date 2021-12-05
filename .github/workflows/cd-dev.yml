@@ -19,7 +19,7 @@ jobs:
       # - name: 'Dev Deploy'
       #   id: dev-cd
         # uses: ./.github/workflows/cd-template
-        uses: spacekatt/azure-func-dotnet-play/.github/workflows/cd-template
+        uses: spacekatt/azure-func-dotnet-play/.github/workflows/cd-template@main
         with:
           azure_functionapp_package_path: ${{ env.AZURE_FUNCTIONAPP_PACKAGE_PATH }}
           bicep_manifest_file: ./deploy/resources/dev.bicep
