@@ -24,8 +24,8 @@ on:
     secrets:
       azure_credentials:
         required: true
-      # azure_functionapp_name:
-      #   required: true
+      azure_functionapp_name:
+        required: true
       azure_resource_group:
         required: true
       azure_subscription:
@@ -89,6 +89,6 @@ jobs:
       uses: Azure/functions-action@v1
       id: fa
       with:
-        app-name: '${{ steps.deploy.outputs.functionAppName }}'
+        app-name: '${{ inputs.azure_functionapp_name }}'
         package: '${{ inputs.azure_functionapp_package_path }}/${{ inputs.output_directory }}'
         publish-profile: ${{ secrets.azure_function_pub_prof }}
