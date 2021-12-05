@@ -3,70 +3,11 @@ on:
     branches:
       - main
 
-env:
-  AZURE_FUNCTIONAPP_NAME: fun-spacekattfunc
-  AZURE_FUNCTIONAPP_PACKAGE_PATH: '.'
-  DOTNET_BUILD_DEPENDENCY_VERSION: '3.1.x'
-  DOTNET_VERSION: '5.0.x'
-  PROJECT_FILE: azure-func-dotnet-play.csproj
-  OUTPUT_DIRECTORY: output
-
-name: Azure Bicep Deploy and Publish
 jobs:
-  deploy-infrastructure:
-    runs-on: ubuntu-latest
-    steps:
-      # Checkout code
-    - uses: actions/checkout@main
-
-      # Log into Azure
-    - uses: azure/login@v1
-      with:
-        creds: ${{ secrets.AZURE_CREDENTIALS }}
-
-      # Deploy Bicep file
-    - name: deploy bicep template file
-      uses: azure/arm-deploy@v1
-      with:
-        subscriptionId: ${{ secrets.AZURE_SUBSCRIPTION }}
-        resourceGroupName: ${{ secrets.AZURE_RG }}
-        template: ./deploy/resources/main.bicep
-        failOnStdErr: false
-
-  build-publish:
-    runs-on: ubuntu-latest
-    needs: deploy-infrastructure
-    steps:
-      # Checkout code
-    - uses: actions/checkout@main
-
-    - name: 'Setup DotNet ${{ env.DOTNET_BUILD_DEPENDENCY_VERSION }} Env (Build Step Dependency)'
-      uses: actions/setup-dotnet@v1.7.2
-      with:
-        dotnet-version: ${{ env.DOTNET_BUILD_DEPENDENCY_VERSION }}
-
-    - name: 'Setup DotNet ${{ env.DOTNET_VERSION }} Env'
-      uses: actions/setup-dotnet@v1.7.2
-      with:
-        dotnet-version: ${{ env.DOTNET_VERSION }}
-
-    - name: Install dependencies
-      shell: bash
-      run: 'dotnet restore ${{ env.PROJECT_FILE }}'
-
-    - name: Build project
-      shell: bash
-      run: 'dotnet build ${{ env.PROJECT_FILE }} --configuration Release --no-restore --output ./${{ env.OUTPUT_DIRECTORY }}'
-
-      # Log into Azure
-    - uses: azure/login@v1
-      with:
-        creds: ${{ secrets.AZURE_CREDENTIALS }}
-
-    - name: 'Publish Azure Function'
-      uses: Azure/functions-action@v1
-      id: fa
-      with:
-        app-name: '${{ env.AZURE_FUNCTIONAPP_NAME }}'
-        package: '${{ env.AZURE_FUNCTIONAPP_PACKAGE_PATH }}/${{ env.OUTPUT_DIRECTORY }}'
-        publish-profile: ${{ env.AZURE_FUNCTION_PUB_PROF }}
+  call-workflow-passing-data:
+    uses: spacekatt/azure-func-dotnet-play/.github/workflows/cd-template.yml
+    with:
+      bicep_manifest_file: ./deploy/resources/dev.bicep
+      azure_functionapp_name: fun-spacekattdev
+      azure_subscription: '${{ secrets.AZURE_SUBSCRIPTION }}'
+      azure_resource_group: '${{ secrets.AZURE_RG }}'

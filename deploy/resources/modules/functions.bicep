@@ -1,5 +1,12 @@
+@allowed([
+  'dev'
+  'stag'
+  'prod'
+])
+param environmentLabel string
+
 param location string = resourceGroup().location
-param appNameSuffix string = 'spacekattfunc'
+param appNameSuffix string = 'spacekatt${environmentLabel}'
 param keyVaultSku string = 'Standard'
 
 var functionAppName = 'fun-${appNameSuffix}'
@@ -12,7 +19,7 @@ var keyVaultName = 'kv${appNameSuffix}'
 var functionAppKeySecretName = 'SpaceKattFuncAppHostKey'
 
 var appTags = {
-  AppID: 'myfunc'
+  AppID: 'myfunc${environmentLabel}'
   AppName: 'My Function App'
 }
 
