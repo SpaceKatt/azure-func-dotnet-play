@@ -11,7 +11,7 @@ env:
 
 name: CI Workflow
 jobs:
-  build-test:
+  ci-build-test:
     runs-on: ubuntu-latest
     steps:
       # Checkout code
@@ -38,3 +38,5 @@ jobs:
     - name: Test project
       shell: bash
       run: 'dotnet test ${{ env.PROJECT_FILE }} --no-build'
+
+    # TODO: add lint step

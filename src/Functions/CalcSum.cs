@@ -9,39 +9,39 @@ using Newtonsoft.Json;
 
 namespace AzureFuncDotnetPlay
 {
-    class ProductRequest
+    class SumRequest
     {
         public IList<double> sequence { get; set; }
     }
 
-    class ProductResponse
+    class SumResponse
     {
-        public double product { get; set; }
+        public double sum { get; set; }
 
-        public ProductResponse(double product) => this.product = product;
+        public SumResponse(double sum) => this.sum = sum;
     }
 
-    class GetProduct
+    class CalcSum
     {
-        public GetProduct() {}
+        public CalcSum() {}
 
-        [Function(nameof(GetProduct))]
+        [Function(nameof(CalcSum))]
         public async Task<HttpResponseData> Run([HttpTrigger(AuthorizationLevel.Anonymous, "post")] HttpRequestData request, FunctionContext context)
         {
-            var logger = context.GetLogger<ProductResponse>();
+            var logger = context.GetLogger<SumResponse>();
 
             try {
                 var body = await new StreamReader(request.Body).ReadToEndAsync();
-                var requestData = JsonConvert.DeserializeObject<ProductRequest>(body);
+                var requestData = JsonConvert.DeserializeObject<SumRequest>(body);
 
-                double product = 1;
+                double sum = 0;
                 foreach (var num in requestData.sequence)
                 {
-                    product *= num;
+                    sum += num;
                 }
 
                 var response = request.CreateResponse(System.Net.HttpStatusCode.OK);
-                var responseData = JsonConvert.SerializeObject(new ProductResponse(product));
+                var responseData = JsonConvert.SerializeObject(new SumResponse(sum));
                 await response.WriteStringAsync(responseData).ConfigureAwait(false);
 
                 return response;
