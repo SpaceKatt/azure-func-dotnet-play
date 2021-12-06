@@ -7,7 +7,7 @@ on:
 
 jobs:
   dev_cd_job:
-    uses: spacekatt/azure-func-dotnet-play/.github/workflows/cd-template.yml@main
+    uses: spacekatt/azure-func-dotnet-play/.github/workflow-template/cd-template.yml@main
     with:
       azure_functionapp_package_path: '.'
       azure_functionapp_name: fun-skattdev
