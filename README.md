@@ -48,20 +48,30 @@ func azure functionapp publish fun-spacekattfunc
 
 See tutorial for [Deploying Bicep with GitHub Actions](https://docs.microsoft.com/en-us/azure/azure-resource-manager/bicep/deploy-github-actions?tabs=CLI).
 
-We need to set up a Service Principal to authenticate the GitHub Actions runner CI/CD process(es) with Azure.
+We need to set up a Service Principal to authenticate the GitHub Actions runner CI/CD process(es) with Azure, for each resource group we wish to deploy to.
 
 ```bash
- az ad sp create-for-rbac --name ${AZURE_SP_NAME} --role contributor --scopes /subscriptions/${AZURE_SUB_ID}/resourceGroups/spacekatt-func-play --sdk-auth
+ az ad sp create-for-rbac --name ${AZURE_SP_NAME} --role contributor --scopes /subscriptions/${AZURE_SUB_ID}/resourceGroups/${AZURE_RESOURCE_GROUP} --sdk-auth
  ```
 
  Several secrets need to be set for GitHub Actions to authenticate with Azure.
 
 | GitHub Repo Secrets Name | Description |
 | :----------------------  | :- |
-| `AZURE_CREDENTIALS` | Output of `az ad sp create-for-rbac` command; service principal credentials. |
-| `AZURE_FUNCTION_PUB_PROF` | Azure Functions publish profile (XML), downloaded from Azure. |
-| `AZURE_RG` | Azure resource group which we created for the project. |
+| `AZURE_RG_DEV` | Azure resource group which we created for the project's dev env. |
+| `AZURE_RG_STAG` | Azure resource group which we created for the project's dev env. |
+| `AZURE_RG_PROD` | Azure resource group which we created for the project's prod env. |
+| `AZURE_CREDENTIALS_DEV` | Output of `az ad sp create-for-rbac` command; service principal credentials. |
+| `AZURE_CREDENTIALS_STAG` | Output of `az ad sp create-for-rbac` command; service principal credentials. |
+| `AZURE_CREDENTIALS_PROD` | Output of `az ad sp create-for-rbac` command; service principal credentials. |
+| `AZURE_FUNCTION_PUB_PROF_DEV` | Azure Functions publish profile (XML), downloaded from Azure. |
+| `AZURE_FUNCTION_PUB_PROF_STAG` | Azure Functions publish profile (XML), downloaded from Azure. |
+| `AZURE_FUNCTION_PUB_PROF_PROD` | Azure Functions publish profile (XML), downloaded from Azure. |
 | `AZURE_SUBSCRIPTION` | Azure subscription Id. |
+
+> Issue: Function Publish Profile has to be fetched (currently) after deployment. Thus, initial set up will likely end in failure until secret for profile is fetched and set and pipeline is rerun.
+
+> Note: The author recommends only setting up the `*_DEV` secrets at first, then setting up additional envs later.
 
 ### Pipeline Inventory
 
