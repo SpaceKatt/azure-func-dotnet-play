@@ -1,0 +1,58 @@
+name: Azure Infrastructure Deploy and Publish
+
+on:
+  workflow_call:
+    inputs:
+      azure_functionapp_package_path:
+        required: true
+        type: string
+      azure_functionapp_name:
+        required: true
+        type: string
+      bicep_manifest_file:
+        required: true
+        type: string
+      dotnet_build_dependency_version:
+        required: true
+        type: string
+      dotnet_version:
+        required: true
+        type: string
+      project_file:
+        required: true
+        type: string
+      output_directory:
+        required: true
+        type: string
+    secrets:
+      azure_credentials:
+        required: true
+      azure_resource_group:
+        required: true
+      azure_subscription:
+        required: true
+      azure_function_pub_prof:
+        required: true
+
+jobs:
+  deploy-artifact:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Download Artifact
+      uses: actions/download-artifact@v2
+      with:
+        name: ${{ inputs.azure_functionapp_name }}
+        path: './${{ inputs.output_directory }}'
+
+      # Log into Azure
+    - uses: azure/login@v1
+      with:
+        creds: ${{ secrets.azure_credentials }}
+
+    - name: 'Publish Azure Function'
+      uses: Azure/functions-action@v1
+      id: fa
+      with:
+        app-name: '${{ inputs.azure_functionapp_name }}'
+        package: './${{ inputs.output_directory }}'
+        publish-profile: ${{ secrets.azure_function_pub_prof }}

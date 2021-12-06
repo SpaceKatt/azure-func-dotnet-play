@@ -1,0 +1,94 @@
+name: Azure Infrastructure Deploy and Publish
+
+on:
+  workflow_call:
+    inputs:
+      azure_functionapp_package_path:
+        required: true
+        type: string
+      azure_functionapp_name:
+        required: true
+        type: string
+      bicep_manifest_file:
+        required: true
+        type: string
+      dotnet_build_dependency_version:
+        required: true
+        type: string
+      dotnet_version:
+        required: true
+        type: string
+      project_file:
+        required: true
+        type: string
+      output_directory:
+        required: true
+        type: string
+    secrets:
+      azure_credentials:
+        required: true
+      azure_resource_group:
+        required: true
+      azure_subscription:
+        required: true
+      azure_function_pub_prof:
+        required: true
+
+jobs:
+  deploy-infrastructure:
+    runs-on: ubuntu-latest
+    steps:
+      # Checkout code
+    - uses: actions/checkout@main
+
+      # Log into Azure
+    - uses: azure/login@v1
+      with:
+        creds: ${{ secrets.azure_credentials }}
+
+      # Deploy Bicep file
+    - name: deploy bicep template file
+      uses: azure/arm-deploy@v1
+      id: deploy
+      with:
+        subscriptionId: ${{ secrets.azure_subscription }}
+        resourceGroupName: ${{ secrets.azure_resource_group }}
+        template: ${{ inputs.bicep_manifest_file }}
+        deploymentMode: Complete
+        failOnStdErr: false
+
+  build-publish:
+    runs-on: ubuntu-latest
+    needs: deploy-infrastructure
+    steps:
+      # Checkout code
+    - uses: actions/checkout@main
+
+    - name: 'Setup DotNet ${{ inputs.dotnet_build_dependency_version }} Env (Build Step Dependency)'
+      uses: actions/setup-dotnet@v1.7.2
+      with:
+        dotnet-version: ${{ inputs.dotnet_build_dependency_version }}
+
+    - name: 'Setup DotNet ${{ inputs.dotnet_version }} Env'
+      uses: actions/setup-dotnet@v1.7.2
+      with:
+        dotnet-version: ${{ inputs.dotnet_version }}
+
+    - name: Install dependencies
+      shell: bash
+      run: 'dotnet restore ${{ inputs.project_file }}'
+
+    - name: Build project
+      shell: bash
+      run: 'dotnet build ${{ inputs.project_file }} --configuration Release --no-restore --output ./${{ inputs.output_directory }}'
+
+    #   # Log into Azure
+    # - uses: azure/login@v1
+    #   with:
+    #     creds: ${{ secrets.azure_credentials }}
+
+    - name: Publish artifact
+      uses: actions/upload-artifact@v2
+      with:
+        name: ${{ inputs.azure_functionapp_name }}
+        path: './${{ inputs.output_directory }}'
