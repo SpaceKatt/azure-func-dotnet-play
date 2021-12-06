@@ -10,6 +10,7 @@ Testing ground for C# (Dotnet) Azure Functions
   - [CI/CD](#cicd)
     - [Setting Up CI/CD](#setting-up-cicd)
     - [Pipeline Inventory](#pipeline-inventory)
+  - [Insomnia Request Examples](#insomnia-request-examples)
   - [(DEPRECATED) Deploy to Azure without CI/CD](#deprecated-deploy-to-azure-without-cicd)
 
 ## Prerequisites
@@ -81,6 +82,13 @@ The following CICD pipelines exist in this project...
 | [CD Workflow](./.github/workflows/main.yml) | Deploys dev resources on merge to `main`. | [![Azure Bicep Deploy and Publish](https://github.com/SpaceKatt/azure-func-dotnet-play/actions/workflows/cd-dev.yml/badge.svg)](https://github.com/SpaceKatt/azure-func-dotnet-play/actions/workflows/cd-dev.yml) |
 | [Release Workflow](./) | Deploys staging and prod resources on push to `release/*`. | [![Release CD Stage/Prod](https://github.com/SpaceKatt/azure-func-dotnet-play/actions/workflows/cd-release.yml/badge.svg)](https://github.com/SpaceKatt/azure-func-dotnet-play/actions/workflows/cd-release.yml) |
 
+## Insomnia Request Examples
+
+[Insomnia](https://insomnia.rest/) is a fun tool used to test RESTful APIs. (Similar to [Postman](https://www.postman.com/).)
+
+Example requests are given in an [Insomnia collection JSON export](./examples/insomnia-example-collection.json).
+
+> See the docs to learn [how to import request collections](https://docs.insomnia.rest/insomnia/import-export-data).
 
 ## (DEPRECATED) Deploy to Azure without CI/CD
 
