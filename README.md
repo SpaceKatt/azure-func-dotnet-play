@@ -78,9 +78,9 @@ The following CICD pipelines exist in this project...
 
 | Pipeline | Description | Badge |
 | :------  | :---------- | :---- |
-| [CI Workflow](./) | Runs CI workflow on pull requests to `main`. | [![CI Workflow](https://github.com/SpaceKatt/azure-func-dotnet-play/actions/workflows/ci.yml/badge.svg)](https://github.com/SpaceKatt/azure-func-dotnet-play/actions/workflows/ci.yml) |
-| [CD Workflow](./.github/workflows/main.yml) | Deploys dev resources on merge to `main`. | [![Azure Bicep Deploy and Publish](https://github.com/SpaceKatt/azure-func-dotnet-play/actions/workflows/cd-dev.yml/badge.svg)](https://github.com/SpaceKatt/azure-func-dotnet-play/actions/workflows/cd-dev.yml) |
-| [Release Workflow](./) | Deploys staging and prod resources on push to `release/*`. | [![Release CD Stage/Prod](https://github.com/SpaceKatt/azure-func-dotnet-play/actions/workflows/cd-release.yml/badge.svg)](https://github.com/SpaceKatt/azure-func-dotnet-play/actions/workflows/cd-release.yml) |
+| [CI Workflow](./.github/workflows/ci.yml) | Runs CI workflow on pull requests to `main`. | [![CI Workflow](https://github.com/SpaceKatt/azure-func-dotnet-play/actions/workflows/ci.yml/badge.svg)](https://github.com/SpaceKatt/azure-func-dotnet-play/actions/workflows/ci.yml) |
+| [CD Workflow](./.github/workflows/cd-dev.yml) | Deploys dev resources on merge to `main`. | [![Azure Bicep Deploy and Publish](https://github.com/SpaceKatt/azure-func-dotnet-play/actions/workflows/cd-dev.yml/badge.svg)](https://github.com/SpaceKatt/azure-func-dotnet-play/actions/workflows/cd-dev.yml) |
+| [Release Workflow](./.github/workflows/cd-release.yml) | Deploys staging and prod resources on push to `release/*`. | [![Release CD Stage/Prod](https://github.com/SpaceKatt/azure-func-dotnet-play/actions/workflows/cd-release.yml/badge.svg)](https://github.com/SpaceKatt/azure-func-dotnet-play/actions/workflows/cd-release.yml) |
 
 ## Insomnia Request Examples
 
