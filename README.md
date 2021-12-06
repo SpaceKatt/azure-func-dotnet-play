@@ -35,6 +35,7 @@ We need to set up Azure for each of our environments by...
 1. Creating a resource group.
 1. Creating a service principal for modifying resource group.
 1. Adding appropriate secrets to the GitHub repository.
+1. (Issue) Run pipeline to deploy resources, then download Azure Functions Publish Profile and add to repo secrets.
 
 Create resource group.
 
@@ -43,7 +44,7 @@ az login
 az group create --name ${AZURE_RG_DEV} --location westus
 ```
 
-We need to set up a Service Principal to authenticate the GitHub Actions runner CI/CD process(es) with Azure, for each resource group we wish to deploy to.
+Create a Service Principal to authenticate the GitHub Actions runner CI/CD process(es) with Azure, for each resource group we wish to deploy to.
 
 ```bash
  az ad sp create-for-rbac --name ${AZURE_SERVICE_PRINCIPAL_NAME_DEV} --role contributor --scopes /subscriptions/${AZURE_SUB_ID}/resourceGroups/${AZURE_RG_DEV} --sdk-auth
@@ -51,7 +52,7 @@ We need to set up a Service Principal to authenticate the GitHub Actions runner 
 
 > Save the output of the Service Principal creation, as this will be out `AZURE_CREDENTIALS_*` secret.
 
- Several secrets need to be set for GitHub Actions to authenticate with Azure.
+Add [secrets to GitHub](https://docs.github.com/en/actions/security-guides/encrypted-secrets#creating-encrypted-secrets-for-a-repository) for GitHub Actions to authenticate with Azure.
 
 > Note: The author recommends only setting up the `*_DEV` secrets at first, then setting up additional envs later.
 

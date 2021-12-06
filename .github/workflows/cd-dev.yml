@@ -9,7 +9,7 @@ jobs:
   build_dev_artifact:
     uses: spacekatt/azure-func-dotnet-play/.github/workflows/build-and-publish-artifact.yml@main
     with:
-      artifact_name: prod-build-artifact
+      artifact_name: dev-build-artifact
       azure_functionapp_package_path: '.'
       azure_functionapp_name: fun-skattdev
       bicep_manifest_file: ./deploy/resources/dev.bicep
@@ -27,7 +27,7 @@ jobs:
     uses: spacekatt/azure-func-dotnet-play/.github/workflows/deploy-artifact.yml@main
     needs: build_dev_artifact
     with:
-      artifact_name: prod-build-artifact
+      artifact_name: dev-build-artifact
       azure_functionapp_package_path: '.'
       azure_functionapp_name: fun-skattdev
       bicep_manifest_file: ./deploy/resources/dev.bicep
