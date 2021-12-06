@@ -6,7 +6,7 @@
 param environmentLabel string
 
 param location string = resourceGroup().location
-param appNameSuffix string = 'spacekatt${environmentLabel}'
+param appNameSuffix string = 'skatt${environmentLabel}'
 param keyVaultSku string = 'Standard'
 
 var functionAppName = 'fun-${appNameSuffix}'
