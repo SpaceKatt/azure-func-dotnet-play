@@ -1,0 +1,190 @@
+{
+    "_type": "export",
+    "__export_format": 4,
+    "__export_date": "2021-12-06T03:17:10.759Z",
+    "__export_source": "insomnia.desktop.app:v2021.6.0",
+    "resources": [
+        {
+            "_id": "req_761d0dc759a340dc9bb854241642b2a7",
+            "parentId": "wrk_e946d9f9d5864f58b61ccecb07a450f8",
+            "modified": 1638759472296,
+            "created": 1638687190766,
+            "url": "{{ _.baseUrl }}/CalcSum",
+            "name": "CalcSum",
+            "description": "",
+            "method": "POST",
+            "body": {
+                "mimeType": "application/json",
+                "text": "{\n\t\"sequence\": [\n\t\t0, \n\t\t1,\n\t\t2,\n\t\t7\n\t]\n}"
+            },
+            "parameters": [],
+            "headers": [
+                {
+                    "name": "Content-Type",
+                    "value": "application/json",
+                    "id": "pair_0c2878c80ed3464a9392b04135a39d8a"
+                }
+            ],
+            "authentication": {},
+            "metaSortKey": -1638687190766,
+            "isPrivate": false,
+            "settingStoreCookies": true,
+            "settingSendCookies": true,
+            "settingDisableRenderRequestBody": false,
+            "settingEncodeUrl": true,
+            "settingRebuildPath": true,
+            "settingFollowRedirects": "global",
+            "_type": "request"
+        },
+        {
+            "_id": "wrk_e946d9f9d5864f58b61ccecb07a450f8",
+            "parentId": null,
+            "modified": 1638687152382,
+            "created": 1638687152382,
+            "name": "AzFuncPlayground",
+            "description": "",
+            "scope": "collection",
+            "_type": "workspace"
+        },
+        {
+            "_id": "req_a120b57bea3749e99ecea518114aad3c",
+            "parentId": "wrk_e946d9f9d5864f58b61ccecb07a450f8",
+            "modified": 1638759467152,
+            "created": 1638738236623,
+            "url": "{{ _.baseUrl }}/CalcProduct",
+            "name": "CalcProduct",
+            "description": "",
+            "method": "POST",
+            "body": {
+                "mimeType": "application/json",
+                "text": "{\n\t\"sequence\": [\n\t\t10, \n\t\t1,\n\t\t2,\n\t\t1\n\t]\n}"
+            },
+            "parameters": [],
+            "headers": [
+                {
+                    "name": "Content-Type",
+                    "value": "application/json",
+                    "id": "pair_0c2878c80ed3464a9392b04135a39d8a"
+                }
+            ],
+            "authentication": {},
+            "metaSortKey": -1603159710276,
+            "isPrivate": false,
+            "settingStoreCookies": true,
+            "settingSendCookies": true,
+            "settingDisableRenderRequestBody": false,
+            "settingEncodeUrl": true,
+            "settingRebuildPath": true,
+            "settingFollowRedirects": "global",
+            "_type": "request"
+        },
+        {
+            "_id": "env_826afbfcb3a914265bf1890d3ad47e29d0d0bec3",
+            "parentId": "wrk_e946d9f9d5864f58b61ccecb07a450f8",
+            "modified": 1638687156437,
+            "created": 1638687152389,
+            "name": "Base Environment",
+            "data": {},
+            "dataPropertyOrder": {},
+            "color": null,
+            "isPrivate": false,
+            "metaSortKey": 1638687152389,
+            "_type": "environment"
+        },
+        {
+            "_id": "jar_826afbfcb3a914265bf1890d3ad47e29d0d0bec3",
+            "parentId": "wrk_e946d9f9d5864f58b61ccecb07a450f8",
+            "modified": 1638687152391,
+            "created": 1638687152391,
+            "name": "Default Jar",
+            "cookies": [],
+            "_type": "cookie_jar"
+        },
+        {
+            "_id": "spc_17894ce2eb0641acb890d80cdbd1e0ce",
+            "parentId": "wrk_e946d9f9d5864f58b61ccecb07a450f8",
+            "modified": 1638687152386,
+            "created": 1638687152386,
+            "fileName": "AzFuncPlayground",
+            "contents": "",
+            "contentType": "yaml",
+            "_type": "api_spec"
+        },
+        {
+            "_id": "env_5101e3502df2424184efbbf7f0cc5341",
+            "parentId": "env_826afbfcb3a914265bf1890d3ad47e29d0d0bec3",
+            "modified": 1638691422014,
+            "created": 1638687160473,
+            "name": "Local",
+            "data": {
+                "baseUrl": "localhost:7071/api"
+            },
+            "dataPropertyOrder": {
+                "&": [
+                    "baseUrl"
+                ]
+            },
+            "color": null,
+            "isPrivate": false,
+            "metaSortKey": 1638687160473,
+            "_type": "environment"
+        },
+        {
+            "_id": "env_004fbf634b12459fb4d7b4c876a1e552",
+            "parentId": "env_826afbfcb3a914265bf1890d3ad47e29d0d0bec3",
+            "modified": 1638757910499,
+            "created": 1638691414707,
+            "name": "Dev",
+            "data": {
+                "baseUrl": "https://fun-skattdev.azurewebsites.net/api"
+            },
+            "dataPropertyOrder": {
+                "&": [
+                    "baseUrl"
+                ]
+            },
+            "color": null,
+            "isPrivate": false,
+            "metaSortKey": 1638691414707,
+            "_type": "environment"
+        },
+        {
+            "_id": "env_713c1d2cc02246d18a7f9108e224d97e",
+            "parentId": "env_826afbfcb3a914265bf1890d3ad47e29d0d0bec3",
+            "modified": 1638757921238,
+            "created": 1638751488720,
+            "name": "Staging",
+            "data": {
+                "baseUrl": "https://fun-skattstag.azurewebsites.net/api"
+            },
+            "dataPropertyOrder": {
+                "&": [
+                    "baseUrl"
+                ]
+            },
+            "color": null,
+            "isPrivate": false,
+            "metaSortKey": 1638751488720,
+            "_type": "environment"
+        },
+        {
+            "_id": "env_a8b134304cb341ff8ab1671d5aaa3afa",
+            "parentId": "env_826afbfcb3a914265bf1890d3ad47e29d0d0bec3",
+            "modified": 1638757931823,
+            "created": 1638757912882,
+            "name": "Prod",
+            "data": {
+                "baseUrl": "https://fun-skattprod.azurewebsites.net/api"
+            },
+            "dataPropertyOrder": {
+                "&": [
+                    "baseUrl"
+                ]
+            },
+            "color": null,
+            "isPrivate": false,
+            "metaSortKey": 1638757912882,
+            "_type": "environment"
+        }
+    ]
+}
