@@ -1,5 +1,7 @@
 # Azure Func Dotnet Playgound
 
+[![Release CD Stage/Prod](https://github.com/SpaceKatt/azure-func-dotnet-play/actions/workflows/cd-release.yml/badge.svg)](https://github.com/SpaceKatt/azure-func-dotnet-play/actions/workflows/cd-release.yml)
+
 Testing ground for C# (Dotnet) Azure Functions
 
 - [Azure Func Dotnet Playgound](#azure-func-dotnet-playgound)
@@ -14,6 +16,7 @@ Testing ground for C# (Dotnet) Azure Functions
 
 - Install Dotnet 5
 - Install Azure Function CLI
+- Install Azure CLI
 
 ## Run Functions Locally
 
@@ -81,4 +84,4 @@ The following CICD pipelines exist in this project...
 | :------  | :---------- | :---- |
 | [TODO: CI Workflow](./) | Runs CI workflow on pushed branches. | [![CI Workflow](https://github.com/SpaceKatt/azure-func-dotnet-play/actions/workflows/ci.yml/badge.svg)](https://github.com/SpaceKatt/azure-func-dotnet-play/actions/workflows/ci.yml) |
 | [CD Workflow](./.github/workflows/main.yml) | Deploys dev resources on merge to `main`. | [![Azure Bicep Deploy and Publish](https://github.com/SpaceKatt/azure-func-dotnet-play/actions/workflows/cd-dev.yml/badge.svg)](https://github.com/SpaceKatt/azure-func-dotnet-play/actions/workflows/cd-dev.yml) |
-| [Release Workflow](./) | Deploys staging and prod resources on push to `release/*`. | [![CD Stage/Prod on Release](https://github.com/SpaceKatt/azure-func-dotnet-play/actions/workflows/cd-release.yml/badge.svg)](https://github.com/SpaceKatt/azure-func-dotnet-play/actions/workflows/cd-release.yml) |
+| [Release Workflow](./) | Deploys staging and prod resources on push to `release/*`. | [![Release CD Stage/Prod](https://github.com/SpaceKatt/azure-func-dotnet-play/actions/workflows/cd-release.yml/badge.svg)](https://github.com/SpaceKatt/azure-func-dotnet-play/actions/workflows/cd-release.yml) |
