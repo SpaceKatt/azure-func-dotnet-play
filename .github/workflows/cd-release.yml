@@ -38,3 +38,20 @@ jobs:
       azure_function_pub_prof: ${{ secrets.AZURE_FUNCTION_PUB_PROF_STAG }}
       azure_resource_group: ${{ secrets.AZURE_RG_STAG }}
       azure_subscription: ${{ secrets.AZURE_SUBSCRIPTION }}
+
+  deploy_prod_artifact:
+    uses: spacekatt/azure-func-dotnet-play/.github/workflows/deploy-artifact.yml@main
+    needs: deploy_staging_artifact
+    with:
+      azure_functionapp_package_path: '.'
+      azure_functionapp_name: fun-skattprod
+      bicep_manifest_file: ./deploy/resources/prod.bicep
+      dotnet_build_dependency_version: '3.1.x'
+      dotnet_version: '5.0.x'
+      output_directory: output
+      project_file: azure-func-dotnet-play.csproj
+    secrets:
+      azure_credentials: ${{ secrets.AZURE_CREDENTIALS_PROD }}
+      azure_function_pub_prof: ${{ secrets.AZURE_FUNCTION_PUB_PROF_PROD }}
+      azure_resource_group: ${{ secrets.AZURE_RG_PROD }}
+      azure_subscription: ${{ secrets.AZURE_SUBSCRIPTION }}
