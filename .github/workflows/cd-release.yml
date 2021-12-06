@@ -12,13 +12,13 @@ jobs:
     with:
       azure_functionapp_package_path: '.'
       azure_functionapp_name: fun-skattstag
-      bicep_manifest_file: ./deploy/resources/dev.bicep
+      bicep_manifest_file: ./deploy/resources/stag.bicep
       dotnet_build_dependency_version: '3.1.x'
       dotnet_version: '5.0.x'
       output_directory: output
       project_file: azure-func-dotnet-play.csproj
     secrets:
-      azure_credentials: ${{ secrets.AZURE_CREDENTIALS_DEV }}
-      azure_function_pub_prof: ${{ secrets.AZURE_FUNCTION_PUB_PROF_DEV }}
-      azure_resource_group: ${{ secrets.AZURE_RG_DEV }}
+      azure_credentials: ${{ secrets.AZURE_CREDENTIALS_STAG }}
+      azure_function_pub_prof: ${{ secrets.AZURE_FUNCTION_PUB_PROF_STAG }}
+      azure_resource_group: ${{ secrets.AZURE_RG_STAG }}
       azure_subscription: ${{ secrets.AZURE_SUBSCRIPTION }}
