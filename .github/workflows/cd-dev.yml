@@ -17,7 +17,7 @@ jobs:
       output_directory: output
       project_file: azure-func-dotnet-play.csproj
     secrets:
-      azure_credentials: ${{ secrets.AZURE_CREDENTIALS }}
-      azure_function_pub_prof: ${{ secrets.AZURE_FUNCTION_PUB_PROF }}
+      azure_credentials: ${{ secrets.AZURE_CREDENTIALS_DEV }}
+      azure_function_pub_prof: ${{ secrets.AZURE_FUNCTION_PUB_PROF_DEV }}
       azure_resource_group: ${{ secrets.AZURE_RG_DEV }}
       azure_subscription: ${{ secrets.AZURE_SUBSCRIPTION }}
