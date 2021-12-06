@@ -59,6 +59,7 @@ jobs:
 
   deploy-artifact:
     runs-on: ubuntu-latest
+    needs: deploy-infrastructure
     steps:
     - name: Download Artifact
       uses: actions/download-artifact@v2
