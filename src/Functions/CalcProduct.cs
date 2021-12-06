@@ -21,11 +21,11 @@ namespace AzureFuncDotnetPlay
         public ProductResponse(double product) => this.product = product;
     }
 
-    class GetProduct
+    class CalcProduct
     {
-        public GetProduct() {}
+        public CalcProduct() {}
 
-        [Function(nameof(GetProduct))]
+        [Function(nameof(CalcProduct))]
         public async Task<HttpResponseData> Run([HttpTrigger(AuthorizationLevel.Anonymous, "post")] HttpRequestData request, FunctionContext context)
         {
             var logger = context.GetLogger<ProductResponse>();
