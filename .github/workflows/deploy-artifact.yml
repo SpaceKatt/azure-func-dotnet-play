@@ -35,6 +35,28 @@ on:
         required: true
 
 jobs:
+  deploy-infrastructure:
+    runs-on: ubuntu-latest
+    steps:
+      # Checkout code
+    - uses: actions/checkout@main
+
+      # Log into Azure
+    - uses: azure/login@v1
+      with:
+        creds: ${{ secrets.azure_credentials }}
+
+      # Deploy Bicep file
+    - name: deploy bicep template file
+      uses: azure/arm-deploy@v1
+      id: deploy
+      with:
+        subscriptionId: ${{ secrets.azure_subscription }}
+        resourceGroupName: ${{ secrets.azure_resource_group }}
+        template: ${{ inputs.bicep_manifest_file }}
+        deploymentMode: Complete
+        failOnStdErr: false
+
   deploy-artifact:
     runs-on: ubuntu-latest
     steps:
