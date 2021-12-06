@@ -3,8 +3,7 @@ name: CD Stage/Prod on Release
 on:
   push:
     branches:
-      # TODO: change to 'release/*'
-      - main
+      - 'release/*'
 
 jobs:
   staging_cd_job:
