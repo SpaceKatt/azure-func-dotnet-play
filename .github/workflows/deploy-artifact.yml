@@ -3,6 +3,9 @@ name: Deploy Infra and Function App
 on:
   workflow_call:
     inputs:
+      artifact_name:
+        required: true
+        type: string
       azure_functionapp_package_path:
         required: true
         type: string
@@ -64,7 +67,7 @@ jobs:
     - name: Download Artifact
       uses: actions/download-artifact@v2
       with:
-        name: ${{ inputs.azure_functionapp_name }}
+        name: ${{ inputs.artifact_name }}
         path: './${{ inputs.output_directory }}'
 
       # Log into Azure
