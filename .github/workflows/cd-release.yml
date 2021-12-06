@@ -1,4 +1,4 @@
-name: CD Stage/Prod on Release
+name: Release CD Stage/Prod
 
 on:
   push:
