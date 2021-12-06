@@ -1,4 +1,4 @@
-name: Azure Infrastructure Deploy and Publish
+name: Deploy Infra and Function App
 
 on:
   workflow_call:

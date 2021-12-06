@@ -1,4 +1,4 @@
-name: Azure Infrastructure Deploy and Publish
+name: Build and Publish Artifact
 
 on:
   workflow_call:
