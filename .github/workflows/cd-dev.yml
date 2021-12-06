@@ -7,7 +7,23 @@ on:
 
 jobs:
   build_dev_artifact:
-    uses: spacekatt/azure-func-dotnet-play/.github/workflows/deploy-build-and-publish-artifact.yml@main
+    uses: spacekatt/azure-func-dotnet-play/.github/workflows/build-and-publish-artifact.yml@main
+    with:
+      azure_functionapp_package_path: '.'
+      azure_functionapp_name: fun-skattdev
+      bicep_manifest_file: ./deploy/resources/dev.bicep
+      dotnet_build_dependency_version: '3.1.x'
+      dotnet_version: '5.0.x'
+      output_directory: output_dev
+      project_file: azure-func-dotnet-play.csproj
+    secrets:
+      azure_credentials: ${{ secrets.AZURE_CREDENTIALS_DEV }}
+      azure_function_pub_prof: ${{ secrets.AZURE_FUNCTION_PUB_PROF_DEV }}
+      azure_resource_group: ${{ secrets.AZURE_RG_DEV }}
+      azure_subscription: ${{ secrets.AZURE_SUBSCRIPTION }}
+
+  deploy_dev_artifact:
+    uses: spacekatt/azure-func-dotnet-play/.github/workflows/deploy-artifact.yml@main
     with:
       azure_functionapp_package_path: '.'
       azure_functionapp_name: fun-skattdev
