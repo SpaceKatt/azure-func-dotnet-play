@@ -1,0 +1,4 @@
+{
+    "deploymentName": "prod-deploy",
+    "environemntLabel": "prod"
+}
