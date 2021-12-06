@@ -24,6 +24,7 @@ jobs:
 
   deploy_staging_artifact:
     uses: spacekatt/azure-func-dotnet-play/.github/workflows/deploy-artifact.yml@main
+    needs: build_stag_prod_artifact
     with:
       azure_functionapp_package_path: '.'
       azure_functionapp_name: fun-skattstag
