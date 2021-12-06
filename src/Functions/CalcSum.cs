@@ -21,11 +21,11 @@ namespace AzureFuncDotnetPlay
         public SumResponse(double sum) => this.sum = sum;
     }
 
-    class GetSum
+    class CalcSum
     {
-        public GetSum() {}
+        public CalcSum() {}
 
-        [Function(nameof(GetSum))]
+        [Function(nameof(CalcSum))]
         public async Task<HttpResponseData> Run([HttpTrigger(AuthorizationLevel.Anonymous, "post")] HttpRequestData request, FunctionContext context)
         {
             var logger = context.GetLogger<SumResponse>();
